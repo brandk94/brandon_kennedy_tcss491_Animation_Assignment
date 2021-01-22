@@ -10,6 +10,10 @@ class GameEngine {
         this.wheel = null;
         this.surfaceWidth = null;
         this.surfaceHeight = null;
+
+		this.rightArrow = false;
+		this.A = false;
+		this.S = false;
     };
 
     init(ctx) {
@@ -60,6 +64,34 @@ class GameEngine {
             that.rightclick = getXandY(e);
             e.preventDefault();
         }, false);
+
+		window.addEventListener("keydown", function (e) {
+			switch (e.code) {
+				case "ArrowRight":
+					that.rightArrow = true;
+					break;
+				case "KeyA":
+					that.A = true;
+					break;
+				case "KeyS":
+					that.S = true;
+					break;
+			}
+		}, false);
+
+		window.addEventListener("keyup", function (e) {
+			switch (e.code) {
+				case "ArrowRight":
+					that.rightArrow = false;
+					break;
+				case "KeyA":
+					that.A = false;
+					break;
+				case "KeyS":
+					that.S = false;
+					break;
+			}
+		}, false);
     };
 
     addEntity(entity) {
